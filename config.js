@@ -9,7 +9,6 @@ require("dotenv").config();
 
 //==================[ BOT SETTINGS ]==================\\
 global.session     = process.env.SESSION_ID || "";                   // Session ID, To get Yours -- Visit https://arch-md.goodnesstechhost.xyz
-global.prefix      = (process.env.PREFIX || ".").trim().split(/\s+/); // Supports multiple or single prefix
 global.owner       = process.env.OWNER_NUMBER || "2349126793637";     // Owner number (for multiple, use comma-separated in your logic)
 global.sudo        = process.env.SUDO || "2349126793637";                          // Sudo users (string or logic processed array)
 global.ownername   = process.env.OWNER_NAME || "ɢᴏᴏᴅɴᴇꜱꜱ ᴛᴇᴄʜ ";              // Owner name
@@ -23,6 +22,20 @@ global.footer      = process.env.FOOTER || "*ᴘᴏᴡᴇʀᴇᴅ ʙʏ ɢᴏᴏ�
 global.warn        = process.env.WARN || "3";                        // Warning threshold
 global.menutype    = process.env.MENU_TYPE || "";                    // Menu style
 global.scan        = "https://arch-md.goodnesstechhost.xyz/";                      // Scan link
+
+// --- UPDATED PREFIX LOGIC ---
+// Get the prefix from environment variables
+let prefixEnv = (process.env.PREFIX || ".").trim();
+
+// Check if the prefix is "none" and set it to an empty string if it is
+if (prefixEnv.toLowerCase() === 'none') {
+  prefixEnv = '';
+}
+
+// Set the global prefix (this is the default, it can be overridden by DB in main.js)
+global.prefix = prefixEnv.split(/\s+/);
+// -------------------------
+
 
 //==================[ BOT MESSAGES ]==================\\
 global.msg = {
